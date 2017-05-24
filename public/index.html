@@ -1,0 +1,149 @@
+
+<html>
+<head>
+
+<title>Robot Chat App</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta property="og:image" content="conversation.svg" />
+<meta property="og:title" content="Conversation Chat Simple" /> -->
+<meta charset="utf-8" />
+<!-- <meta property="og:description"
+	content="Sample application that shows how to use the Conversation API to identify user intents" /> -->
+<!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+
+<!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+<!-- <link rel="stylesheet" href="css/app.css">
+
+
+
+<link rel="stylesheet" href="./assets/style/app.css" /> -->
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="//cdn.bootcss.com/angular.js/1.4.3/angular.min.js"></script>
+<script src="./assets/js/app.js"></script>
+
+
+<!-- BOOTSTRAP CORE STYLE CSS -->
+<link href="./chat-box/assets/css/bootstrap.css" rel="stylesheet" />
+<!-- FONT AWESOME  CSS -->
+<link href="./chat-box/assets/css/font-awesome.css" rel="stylesheet" />
+<!-- CUSTOM STYLE CSS -->
+<link href="./chat-box/assets/css/style.css" rel="stylesheet" />
+
+
+</head>
+<body ng-app="chatRoom" ng-controller="chatCtrl">
+
+
+
+
+	<!--   <div id="view-change-button" class="button" onclick="PayloadPanel.togglePanel(event, this)">
+    <img class="option full" src="../img/Chat Button.png">
+    <img class="option not-full" src="../img/Code Button.png">
+  </div> -->
+
+	<!-- chat room -->
+	<div class="chat-room-wrapper" ng-show="hasLogined">
+		<div class="container">
+			<div class="row pad-top pad-bottom">
+				<div class=" col-lg-6 col-md-6 col-sm-6">
+					<div class="chat-box-div">
+						<div class="chat-box-head">
+							GROUP CHAT HISTORY
+							<div class="btn-group pull-right">
+								<button type="button" class="btn btn-info dropdown-toggle"
+									data-toggle="dropdown" aria-expanded="false">
+									<span class="fa fa-cogs"></span> <span class="sr-only">Toggle
+										Dropdown</span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#"><span class="fa fa-map-marker"></span>&nbsp;Invisible</a></li>
+									<li><a href="#"><span class="fa fa-comments-o"></span>&nbsp;Online</a></li>
+									<li><a href="#"><span class="fa fa-lock"></span>&nbsp;Busy</a></li>
+									<li class="divider"></li>
+									<li><a href="#"><span class="fa fa-circle-o-notch"></span>&nbsp;Logout</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="panel-body chat-box-main message-wrapper">
+							<div id="contentParent" class="responsive-columns-wrapper">
+								<div id="chat-column-holder"
+									class="responsive-column content-column">
+									<div class="chat-column">
+										<div id="scrollingChat"></div>
+									</div>
+								</div>
+								<!-- <div id="payload-column" class="fixed-column content-column">
+	<div id="payload-initial-message">Type something to see the
+		output</div>
+	<div id="payload-request" class="payload"></div>
+	<div id="payload-response" class="payload"></div>
+</div> -->
+							</div>
+						</div>
+						<div class="chat-box-footer">
+							<div class="input-group">
+
+								<input type="text" id="textInput" class="form-control"
+									placeholder="Type something"
+									onkeydown="ConversationPanel.inputKeyDown(event, this)">
+								<span class="input-group-btn">
+									<button class="btn btn-info" type="button"
+										onclick="ConversationPanel.submitInput(document.getElementById('textInput'))">SEND</button>
+								</span>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+		<script src="js/common.js"></script>
+		<script src="js/api.js"></script>
+		<script src="js/conversation.js"></script>
+		<!--   <script src="js/payload.js"></script> -->
+		<script src="js/global.js"></script>
+	</div>
+	<!-- end of chat room -->
+
+	<!-- login form -->
+	<div class="userform-wrapper" ng-show="!hasLogined">
+		<form class="form-inline login" novalidate name="userform"
+			ng-submit="login()">
+			<div class="form-group" style="text-align: center;margin: 50px;">
+				<label for="nickname" class="sr-only"></label>
+				<div class="input-group">
+					<div class="input-group-addon">
+						<span class="glyphicon glyphicon-user"></span>
+					</div>
+					<input type="text" class="form-control" id="nickname"
+						placeholder="Your Nickname" ng-model="nickname" required />
+				</div>
+
+				<button type="submit" class="btn btn-primary"
+					ng-disabled="userform.$invalid">LOG IN</button>
+			</div>
+
+			<p ng-show="userExisted" class="help-block">A user with this
+				nickname already exists.</p>
+
+		</form>
+	</div>
+	<!-- end of login form -->
+
+	<!-- USING SCRIPTS BELOW TO REDUCE THE LOAD TIME -->
+	<!-- CORE JQUERY SCRIPTS FILE -->
+	<script src="./chat-box/assets/js/jquery-1.11.1.js"></script>
+	<!-- CORE BOOTSTRAP SCRIPTS  FILE -->
+	<script src="./chat-box/assets/js/bootstrap.js"></script>
+
+
+</body>
+</html>
